@@ -1,5 +1,5 @@
 export const SITE_SECTIONS = [
-  { label: "Início", path: "/inicio", id: "inicio" },
+  { label: "Início", path: "/", id: "inicio" },
   { label: "Sobre", path: "/sobre", id: "sobre" },
   { label: "Serviços", path: "/servicos", id: "servicos" },
   { label: "Galeria", path: "/galeria", id: "galeria" },

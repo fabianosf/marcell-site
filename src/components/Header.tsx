@@ -44,7 +44,7 @@ export const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <button
-            onClick={() => handleSectionNavigation("/inicio", "inicio")}
+            onClick={() => handleSectionNavigation("/", "inicio")}
             className="flex items-center gap-3 group"
           >
             <img

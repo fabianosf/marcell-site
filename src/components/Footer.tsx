@@ -26,7 +26,7 @@ export const Footer = () => {
             <h3 className="font-semibold text-base md:text-lg mb-3 md:mb-4">{t("footer.quick_links")}</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/inicio" className="text-background/80 hover:text-background transition-colors">
+                <Link to="/" className="text-background/80 hover:text-background transition-colors">
                   {t("nav.inicio")}
                 </Link>
               </li>
