@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 15%;
+
+    /* Medical Blue - Professional and trustworthy */
+    --primary: 199 89% 48%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 199 89% 65%;
+    --primary-dark: 199 89% 35%;
+
+    /* Accent Teal for highlights */
+    --secondary: 172 66% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 172 66% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(199, 89%, 48%), hsl(172, 66%, 50%));
+    --gradient-soft: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(210, 40%, 98%));
+
+    /* Shadows */
+    --shadow-soft: 0 2px 12px -2px hsl(199 89% 48% / 0.1);
+    --shadow-medium: 0 8px 24px -4px hsl(199 89% 48% / 0.15);
+    --shadow-large: 0 16px 48px -8px hsl(199 89% 48% / 0.2);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Typography */
+    --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .dark {
+    --background: 222.2 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 47% 15%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 47% 15%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 89% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 199 89% 70%;
+    --primary-dark: 199 89% 40%;
+
+    --secondary: 172 66% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 172 66% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 22%;
+    --input: 217.2 32.6% 22%;
+    --ring: 199 89% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Prevent horizontal overflow on mobile */
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    /* Smooth momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    /* Prevent text from breaking layout on mobile */
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Ensure minimum tap target size (44px) */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Remove default iOS input styling */
+  input, textarea, select {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+  }
+  
+  /* Custom animations */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+}
