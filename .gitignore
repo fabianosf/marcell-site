@@ -26,12 +26,6 @@ dist-ssr
 # Variáveis de ambiente (nunca commitar)
 .env
 
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-*.sqlite3
-
 # Build do frontend
 dist/
 dist-ssr/

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Award, Heart, GraduationCap, Microscope, Shield } from "lucide-react";
-import dentistImage from "@/assets/dr-marcell-profile.jpg";
+import logoCero from "@/assets/logo-cero-about.png";
 import { Card, CardContent } from "@/components/ui/card";
 
 const FEATURE_ICONS = [GraduationCap, Microscope, Heart, Shield];
@@ -23,17 +23,18 @@ export const About = () => {
     <section id="sobre" className="py-12 md:py-24 bg-gradient-soft">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Image */}
-          <div className="relative pb-10 md:pb-0">
-            <div className="relative rounded-2xl overflow-hidden shadow-large">
+          {/* Logo CERO — fundo transparente integrado ao gradiente do site */}
+          <div className="flex flex-col items-center gap-4 md:gap-5">
+            <div className="relative flex items-center justify-center px-2 py-6 sm:py-8 md:py-10 min-h-[280px] sm:min-h-[320px] md:min-h-[380px]">
               <img
-                src={dentistImage}
-                alt="Dr. Marcell Parente - Especialista em Endodontia e Implantodontia"
-                className="w-full h-auto object-cover"
+                src={logoCero}
+                alt="CERO - Clínica de Emergências e Reabilitação Oral"
+                className="w-full max-w-[340px] sm:max-w-[400px] md:max-w-[460px] lg:max-w-[500px] h-auto object-contain drop-shadow-[0_8px_24px_hsl(var(--primary)/0.12)]"
               />
             </div>
-            {/* Badge — fixed positioning so it never overflows horizontally */}
-            <div className="absolute bottom-0 right-0 md:-bottom-6 md:-right-6 bg-primary text-primary-foreground px-5 py-4 md:p-6 rounded-xl shadow-medium">
+
+            {/* Badge — abaixo do logo, sem sobrepor a frase */}
+            <div className="self-end mr-2 sm:mr-4 md:mr-8 bg-primary text-primary-foreground px-5 py-4 md:p-6 rounded-xl shadow-medium">
               <div className="text-3xl md:text-4xl font-bold">{t("about.years_value")}</div>
               <div className="text-xs md:text-sm">{t("about.years_label")}</div>
             </div>
