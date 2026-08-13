@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Menu, X, MessageCircle } from "lucide-react";
-import logoImage from "@/assets/logo-cero.png";
+import logoImage from "@/assets/logo-cero-nav.png";
 import { SITE_SECTIONS, scrollToSection } from "@/lib/sections";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
@@ -49,8 +49,8 @@ export const Header = () => {
           >
             <img
               src={logoImage}
-              alt="Dr. Marcell Parente"
-              className="h-12 w-auto transition-transform group-hover:scale-105"
+              alt="CERO - Clínica de Emergências e Reabilitação Oral"
+              className="h-14 w-auto max-h-14 object-contain object-left transition-transform group-hover:scale-105"
             />
           </button>
 
