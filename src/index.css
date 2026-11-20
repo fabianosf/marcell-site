@@ -1,0 +1,173 @@
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/figtree";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Sistema de design — CERO
+  Cores vêm do próprio consultório: bordô do jaleco e da cadeira,
+  rosé dos babadores, esmalte claro e a escala de cor dos dentes.
+  Todas em HSL.
+*/
+@layer base {
+  :root {
+    --background: 195 22% 97%; /* esmalte */
+    --foreground: 205 40% 10%; /* tinta */
+
+    --card: 190 30% 99%;
+    --card-foreground: 205 40% 10%;
+    --popover: 190 30% 99%;
+    --popover-foreground: 205 40% 10%;
+
+    --primary: 198 80% 31%; /* azul CERO (do logo) */
+    --primary-foreground: 195 30% 98%;
+    --primary-light: 198 65% 45%;
+    --primary-dark: 202 70% 11%;
+
+    --secondary: 196 60% 86%; /* azul-gelo */
+    --secondary-foreground: 202 70% 14%;
+
+    --muted: 196 26% 92%;
+    --muted-foreground: 205 14% 34%;
+
+    --accent: 196 60% 86%;
+    --accent-foreground: 202 70% 14%;
+
+    --destructive: 0 72% 42%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 198 16% 83%;
+    --input: 198 16% 83%;
+    --ring: 198 80% 36%;
+
+    --radius: 0.75rem;
+
+    /* Cor de identificação da Dra. Maria Eugênia (jaleco bordô) */
+    --maria: 343 56% 28%;
+    --maria-soft: 343 40% 94%;
+
+    /* Escala de cor dos dentes (VITA clássica, aproximada) */
+    --shade-a1: 38 60% 88%;
+    --shade-a2: 36 58% 82%;
+    --shade-a3: 34 55% 74%;
+    --shade-b1: 44 65% 90%;
+    --shade-b2: 42 60% 82%;
+    --shade-c1: 38 22% 76%;
+    --shade-d2: 22 32% 74%;
+
+    --shadow-soft: 0 1px 2px hsl(205 40% 12% / 0.05), 0 8px 24px -12px hsl(205 40% 12% / 0.12);
+    --shadow-medium: 0 2px 4px hsl(205 40% 12% / 0.06), 0 18px 40px -16px hsl(205 40% 12% / 0.22);
+    --shadow-large: 0 4px 8px hsl(205 40% 12% / 0.06), 0 32px 64px -24px hsl(205 50% 10% / 0.35);
+
+    --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
+    --font-body: "Figtree Variable", system-ui, sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Foco visível para navegação por teclado */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: hsl(var(--secondary));
+    color: hsl(var(--primary-dark));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+
+  .wrap {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8;
+  }
+
+  /* Entrada orquestrada do hero (único movimento automático do site) */
+  .hero-in {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .shade-in {
+    opacity: 0;
+    transform: translateY(24px) rotate(var(--r, 0deg));
+    animation: shade-in 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: var(--d, 0ms);
+  }
+
+  @keyframes hero-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes shade-in {
+    to {
+      opacity: 1;
+      transform: rotate(var(--r, 0deg));
+    }
+  }
+}

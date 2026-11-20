@@ -1,0 +1,10 @@
+services:
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: cero_frontend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
