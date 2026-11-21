@@ -97,6 +97,7 @@ const pt = {
         items: [
           { title: "Restaurações em resina composta", description: "Tratamento de cáries e de dentes fraturados ou desgastados, com resina modelada para recuperar função e aparência natural." },
           { title: "Facetas em resina", description: "Correção de formato, tamanho e cor com camadas finas de resina, preservando o dente." },
+          { title: "Facetas de porcelana", description: "Lâminas de cerâmica coladas na parte da frente dos dentes, corrigindo cor e formato. A cor é estável, não mancha com o passar do tempo e a durabilidade é maior que a das facetas de resina." },
           { title: "Clareamento dental", description: "Dentes mais claros com técnica acompanhada pela dentista, em consultório ou em casa. Manchas e dentes escurecidos têm a causa avaliada antes da indicação." },
           { title: "Fechamento de espaços entre os dentes", description: "Correção de diastemas de forma conservadora, com pouco ou nenhum desgaste do dente." },
           { title: "Remodelação estética do sorriso", description: "Ajuste de formato e proporção em dentes pequenos, desgastados ou irregulares." },

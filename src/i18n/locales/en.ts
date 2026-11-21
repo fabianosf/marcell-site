@@ -97,6 +97,7 @@ const en = {
         items: [
           { title: "Composite resin fillings", description: "Treatment of decay and of fractured or worn teeth, with resin shaped to restore function and a natural look." },
           { title: "Resin veneers", description: "Correction of shape, size and color with thin layers of resin, preserving the tooth." },
+          { title: "Porcelain veneers", description: "Thin ceramic laminates bonded to the front of the teeth, correcting color and shape. The color is stable, does not stain over time, and they last longer than resin veneers." },
           { title: "Teeth whitening", description: "Brighter teeth with a technique supervised by your dentist, in the office or at home. For stains and darkened teeth, the cause is evaluated before recommending a treatment." },
           { title: "Closing gaps between teeth", description: "Conservative correction of diastemas, with little or no tooth reduction." },
           { title: "Aesthetic smile reshaping", description: "Adjusting shape and proportion in small, worn or irregular teeth." },

@@ -97,6 +97,7 @@ const es = {
         items: [
           { title: "Restauraciones en resina compuesta", description: "Tratamiento de caries y de dientes fracturados o desgastados, con resina modelada para recuperar función y aspecto natural." },
           { title: "Carillas en resina", description: "Corrección de forma, tamaño y color con capas finas de resina, preservando el diente." },
+          { title: "Carillas de porcelana", description: "Láminas de cerámica adheridas a la parte frontal de los dientes, que corrigen color y forma. El color es estable, no se mancha con el paso del tiempo y su durabilidad es mayor que la de las carillas de resina." },
           { title: "Blanqueamiento dental", description: "Dientes más claros con una técnica supervisada por la dentista, en consultorio o en casa. En manchas y dientes oscurecidos se evalúa la causa antes de indicar el tratamiento." },
           { title: "Cierre de espacios entre los dientes", description: "Corrección de diastemas de forma conservadora, con poco o ningún desgaste del diente." },
           { title: "Remodelación estética de la sonrisa", description: "Ajuste de forma y proporción en dientes pequeños, desgastados o irregulares." },
