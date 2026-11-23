@@ -17,8 +17,27 @@ export const siteConfig = {
   instagram: "",
 
   address: "Av. Nossa Senhora de Copacabana, 330, sala 707, Copacabana, Rio de Janeiro / RJ, CEP 22020-001",
-  /** Texto usado no mapa. */
+  /** Partes do endereço para schema / NAP. */
+  postalAddress: {
+    streetAddress: "Av. Nossa Senhora de Copacabana, 330, sala 707",
+    addressLocality: "Rio de Janeiro",
+    addressRegion: "RJ",
+    addressNeighborhood: "Copacabana",
+    postalCode: "22020-001",
+    addressCountry: "BR",
+  },
+  /** Coordenadas aproximadas do endereço (SEO local / schema). */
+  geo: {
+    latitude: -22.9678,
+    longitude: -43.1855,
+  },
+  /** Texto usado no mapa embutido. */
   mapQuery: "Av. Nossa Senhora de Copacabana, 330, Copacabana, Rio de Janeiro, RJ",
+  /**
+   * Link oficial do Google Meu Negócio / Maps (cole quando tiver).
+   * Vazio = usa busca pelo endereço (mapQuery).
+   */
+  googleMapsUrl: "",
 
   professionals: {
     marcell: {
@@ -54,3 +73,17 @@ export const getWhatsAppHref = (message: string) =>
   hasWhatsApp ? `https://wa.me/${siteConfig.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(message)}` : "#contato";
 
 export const telHref = () => `tel:+${siteConfig.whatsapp.replace(/\D/g, "")}`;
+
+/** Telefone E.164 para schema e links. */
+export const phoneE164 = () => {
+  const digits = (siteConfig.whatsapp || siteConfig.phone).replace(/\D/g, "");
+  return digits ? `+${digits}` : "";
+};
+
+/** URL do Google Maps (perfil GBP se preenchido, senão busca pelo endereço). */
+export const getMapsUrl = () => {
+  const gbp = siteConfig.googleMapsUrl.trim();
+  if (gbp) return gbp;
+  if (!siteConfig.mapQuery.trim()) return "";
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.mapQuery)}`;
+};

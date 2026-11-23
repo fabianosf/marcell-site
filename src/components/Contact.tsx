@@ -1,17 +1,23 @@
 import { useTranslation } from "react-i18next";
 import { Clock, Instagram, Mail, MapPin, MessageCircle, Phone, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getWhatsAppHref, hasWhatsApp, showContactSection, siteConfig, telHref } from "@/lib/site";
+import { getMapsUrl, getWhatsAppHref, hasWhatsApp, showContactSection, siteConfig, telHref } from "@/lib/site";
 
 type Row = { icon: LucideIcon; label: string; value: string; href?: string };
 
 export const Contact = () => {
   const { t } = useTranslation();
   const whatsappHref = getWhatsAppHref(t("cta.whatsapp_message"));
+  const mapsUrl = getMapsUrl();
   const { marcell, maria } = siteConfig.professionals;
 
   const rows: Row[] = [
-    siteConfig.address && { icon: MapPin, label: t("contact.location"), value: siteConfig.address },
+    siteConfig.address && {
+      icon: MapPin,
+      label: t("contact.location"),
+      value: siteConfig.address,
+      href: mapsUrl || undefined,
+    },
     siteConfig.phone && { icon: Phone, label: t("contact.phone"), value: siteConfig.phone, href: telHref() },
     siteConfig.email && { icon: Mail, label: t("contact.email"), value: siteConfig.email, href: `mailto:${siteConfig.email}` },
     { icon: Clock, label: t("contact.hours"), value: t("contact.hours_value") },

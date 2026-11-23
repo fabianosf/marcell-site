@@ -4,12 +4,12 @@ import path from "path";
 
 /**
  * Preenche %SITE_URL% no index.html (canonical, og:url, og:image) com a
- * variável VITE_SITE_URL. Se ela não existir, usa o endereço do site atual
- * (https://drmarcellparente.com.br). Troque quando o domínio mudar.
+ * variável VITE_SITE_URL. Se ela não existir, usa o domínio canônico
+ * (https://cerocopa.com.br).
  */
 const siteUrlPlugin = (mode: string): Plugin => {
   const env = loadEnv(mode, process.cwd(), "VITE_");
-  const url = (env.VITE_SITE_URL || "https://drmarcellparente.com.br").replace(/\/$/, "");
+  const url = (env.VITE_SITE_URL || "https://cerocopa.com.br").replace(/\/$/, "");
   return {
     name: "site-url-html",
     transformIndexHtml: {

@@ -28,5 +28,5 @@ npm run build    # gera dist/
 
 - **Vercel:** `vercel.json` já faz as rotas (/equipe, /tratamentos...) funcionarem.
 - **Docker + nginx:** `docker compose up --build` (porta 8080).
-- Endereço do site (canonical e prévia de compartilhamento): por padrão `https://drmarcellparente.com.br`.
+- Endereço do site (canonical e prévia de compartilhamento): por padrão `https://cerocopa.com.br`.
   Para trocar, defina `VITE_SITE_URL` (veja `.env.example`).
