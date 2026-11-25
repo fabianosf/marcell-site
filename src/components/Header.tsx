@@ -58,7 +58,7 @@ export const Header = () => {
         isScrolled ? "bg-background/90 shadow-soft backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <nav aria-label="Principal" className="mx-auto flex h-[72px] w-full max-w-[1280px] px-5 sm:px-8 items-center justify-between gap-6">
+      <nav aria-label="Principal" className="mx-auto flex h-[80px] w-full max-w-[1280px] px-5 sm:px-8 items-center justify-between gap-6">
         <a
           href="/"
           onClick={(e) => {
@@ -68,7 +68,7 @@ export const Header = () => {
           aria-label={`${siteConfig.clinicFullName}, início`}
           className="rounded-full text-foreground"
         >
-          <Brand className="h-[52px]" />
+          <Brand className="h-[64px]" />
         </a>
 
         <ul className="hidden items-center gap-1 xl:flex">

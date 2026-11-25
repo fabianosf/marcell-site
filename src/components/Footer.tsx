@@ -20,7 +20,7 @@ export const Footer = () => {
       <meta itemProp="url" content={siteConfig.siteUrl} />
       <div className="wrap grid gap-10 py-14 md:grid-cols-12 md:py-16">
         <div className="md:col-span-4">
-          <Brand inverted className="h-20" />
+          <Brand inverted className="h-24" />
           <p className="mt-5 max-w-[38ch] text-[15px] text-background/70" itemProp="description">
             {t("footer.description")}
           </p>
