@@ -1,0 +1,16 @@
+# Hostinger / Apache — SPA (Vite + React Router)
+Options -MultiViews
+RewriteEngine On
+
+# HTTPS (se o certificado já estiver ativo na Hostinger)
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Arquivos e pastas existentes servem direto
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Demais rotas → index.html
+RewriteRule ^ index.html [L]
