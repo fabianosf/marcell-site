@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NAV_SECTIONS, scrollToSection } from "@/lib/sections";
-import { siteConfig, telHref } from "@/lib/site";
+import { getMapsUrl, siteConfig, telHref } from "@/lib/site";
 import { Brand } from "@/components/Brand";
 
 export const Footer = () => {
@@ -10,15 +10,20 @@ export const Footer = () => {
   const location = useLocation();
   const year = new Date().getFullYear();
   const { marcell, maria } = siteConfig.professionals;
+  const mapsUrl = getMapsUrl();
 
   const go = (path: string, id: string) => (location.pathname === path ? scrollToSection(id) : navigate(path));
 
   return (
-    <footer className="bg-primary-dark text-background">
+    <footer className="bg-primary-dark text-background" itemScope itemType="https://schema.org/Dentist">
+      <meta itemProp="name" content={siteConfig.clinicFullName} />
+      <meta itemProp="url" content={siteConfig.siteUrl} />
       <div className="wrap grid gap-10 py-14 md:grid-cols-12 md:py-16">
         <div className="md:col-span-4">
           <Brand inverted className="h-20" />
-          <p className="mt-5 max-w-[38ch] text-[15px] text-background/70">{t("footer.description")}</p>
+          <p className="mt-5 max-w-[38ch] text-[15px] text-background/70" itemProp="description">
+            {t("footer.description")}
+          </p>
         </div>
 
         <nav aria-label={t("footer.navigate")} className="md:col-span-2">
@@ -44,15 +49,35 @@ export const Footer = () => {
         <div className="md:col-span-3">
           <h2 className="font-display text-lg">{t("footer.contact")}</h2>
           <ul className="mt-4 space-y-2 text-[15px] text-background/75">
-            {siteConfig.address && <li>{siteConfig.address}</li>}
+            {siteConfig.address && (
+              <li itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                {mapsUrl ? (
+                  <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-background">
+                    <span itemProp="streetAddress">{siteConfig.postalAddress.streetAddress}</span>
+                    {", "}
+                    <span itemProp="addressLocality">{siteConfig.postalAddress.addressNeighborhood}</span>
+                    {", "}
+                    <span itemProp="addressRegion">{siteConfig.postalAddress.addressRegion}</span>
+                    {" — CEP "}
+                    <span itemProp="postalCode">{siteConfig.postalAddress.postalCode}</span>
+                  </a>
+                ) : (
+                  siteConfig.address
+                )}
+              </li>
+            )}
             {siteConfig.phone && (
               <li>
-                <a href={telHref()} className="hover:text-background">{siteConfig.phone}</a>
+                <a href={telHref()} className="hover:text-background" itemProp="telephone">
+                  {siteConfig.phone}
+                </a>
               </li>
             )}
             {siteConfig.email && (
               <li className="break-all">
-                <a href={`mailto:${siteConfig.email}`} className="hover:text-background">{siteConfig.email}</a>
+                <a href={`mailto:${siteConfig.email}`} className="hover:text-background" itemProp="email">
+                  {siteConfig.email}
+                </a>
               </li>
             )}
           </ul>

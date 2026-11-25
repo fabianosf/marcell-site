@@ -1,8 +1,8 @@
 const en = {
   meta: {
-    title: "CERO Copacabana | Dr. Marcell Parente and Dr. Maria Eugênia | Endodontics, Implants and Restorative Dentistry",
+    title: "CERO Copacabana | 24h Dentist — Root Canal, Implants and Aesthetic Care",
     description:
-      "CERO, Emergency and Oral Rehabilitation Clinic in Copacabana, Rio de Janeiro. Endodontics and implants with Dr. Marcell Parente, aesthetic restorative dentistry with Dr. Maria Eugênia. Open 24 hours.",
+      "Dentist in Copacabana, Rio de Janeiro: root canal, dental implants and aesthetic restorative care at CERO. Dr. Marcell Parente and Dr. Maria Eugênia. Open 24 hours.",
   },
   nav: {
     equipe: "Team",

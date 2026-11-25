@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import { getMapsUrl, phoneE164, siteConfig } from "@/lib/site";
 
 const setMeta = (selector: string, attr: "content", value: string) => {
@@ -7,21 +8,41 @@ const setMeta = (selector: string, attr: "content", value: string) => {
   if (el) el.setAttribute(attr, value);
 };
 
-/** Título, descrição e dados estruturados (Google) no idioma atual. */
+const upsertJsonLd = (id: string, data: Record<string, unknown>) => {
+  let el = document.getElementById(id) as HTMLScriptElement | null;
+  if (!el) {
+    el = document.createElement("script");
+    el.type = "application/ld+json";
+    el.id = id;
+    document.head.appendChild(el);
+  }
+  el.text = JSON.stringify(data);
+};
+
+/** Título, descrição, canonical por rota e dados estruturados (Google). */
 export const Seo = () => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
+  const { pathname } = useLocation();
 
   useEffect(() => {
+    const origin = siteConfig.siteUrl.replace(/\/$/, "");
+    const path = pathname === "/" ? "/" : pathname.replace(/\/$/, "") || "/";
+    const pageUrl = `${origin}${path === "/" ? "/" : path}`;
+
+    document.documentElement.lang = lang.startsWith("en") ? "en" : lang.startsWith("es") ? "es" : "pt-BR";
     document.title = t("meta.title");
     setMeta('meta[name="description"]', "content", t("meta.description"));
     setMeta('meta[property="og:title"]', "content", t("meta.title"));
     setMeta('meta[property="og:description"]', "content", t("meta.description"));
+    setMeta('meta[property="og:url"]', "content", pageUrl);
     setMeta('meta[name="twitter:title"]', "content", t("meta.title"));
     setMeta('meta[name="twitter:description"]', "content", t("meta.description"));
 
+    const canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (canonical) canonical.href = pageUrl;
+
     const faq = t("faq.list", { returnObjects: true }) as Array<{ q: string; a: string }>;
-    const origin = siteConfig.siteUrl.replace(/\/$/, "");
     const mapsUrl = getMapsUrl();
     const telephone = phoneE164();
 
@@ -35,12 +56,15 @@ export const Seo = () => {
     const dentist: Record<string, unknown> = {
       "@context": "https://schema.org",
       "@type": "Dentist",
+      "@id": `${origin}/#dentist`,
       name: siteConfig.clinicFullName,
-      alternateName: siteConfig.clinicName,
+      alternateName: `${siteConfig.clinicName} Copacabana`,
       description: t("meta.description"),
       image: `${origin}/og-image.jpg`,
+      logo: `${origin}/favicon.png`,
       url: origin,
-      medicalSpecialty: ["Dentistry", "Endodontics", "Dental Implants"],
+      priceRange: "$$",
+      medicalSpecialty: ["Dentistry", "Endodontics", "DentalImplant", "CosmeticDentistry"],
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
@@ -60,6 +84,16 @@ export const Seo = () => {
         latitude: siteConfig.geo.latitude,
         longitude: siteConfig.geo.longitude,
       },
+      knowsAbout: [
+        "tratamento de canal",
+        "endodontia",
+        "implante dentário",
+        "facetas de porcelana",
+        "facetas em resina",
+        "clareamento dental",
+        "emergência dentária 24h",
+        "dentista Copacabana",
+      ],
     };
     if (telephone) dentist.telephone = telephone;
     if (siteConfig.email) dentist.email = siteConfig.email;
@@ -75,14 +109,11 @@ export const Seo = () => {
     }
     if (mapsUrl) {
       dentist.hasMap = mapsUrl;
+      dentist.sameAs = [mapsUrl];
     }
 
-    const sameAs: string[] = [];
-    if (mapsUrl) sameAs.push(mapsUrl);
-    if (siteConfig.instagram) sameAs.push(`https://instagram.com/${siteConfig.instagram.replace(/^@/, "")}`);
-    if (sameAs.length) dentist.sameAs = sameAs;
-
-    const faqPage = {
+    upsertJsonLd("ld-dentist", dentist);
+    upsertJsonLd("ld-faq", {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: faq.map((f) => ({
@@ -90,17 +121,8 @@ export const Seo = () => {
         name: f.q,
         acceptedAnswer: { "@type": "Answer", text: f.a },
       })),
-    };
-
-    const scripts = [dentist, faqPage].map((data) => {
-      const s = document.createElement("script");
-      s.type = "application/ld+json";
-      s.text = JSON.stringify(data);
-      document.head.appendChild(s);
-      return s;
     });
-    return () => scripts.forEach((s) => s.remove());
-  }, [t, lang]);
+  }, [t, lang, pathname]);
 
   return null;
 };

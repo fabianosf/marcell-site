@@ -1,8 +1,8 @@
 const pt = {
   meta: {
-    title: "CERO Copacabana | Dr. Marcell Parente e Dra. Maria Eugênia | Endodontia, Implantes e Dentística",
+    title: "CERO Copacabana | Dentista 24h — Canal, Implantes e Estética",
     description:
-      "CERO, Clínica de Emergências e Reabilitação Oral em Copacabana, Rio de Janeiro. Endodontia e implantes com o Dr. Marcell Parente, dentística estética restauradora com a Dra. Maria Eugênia. Atendimento 24 horas.",
+      "Dentista em Copacabana (RJ): tratamento de canal, implantes e dentística estética na CERO. Dr. Marcell Parente e Dra. Maria Eugênia. Emergência odontológica 24 horas.",
   },
   nav: {
     equipe: "Equipe",
