@@ -8,6 +8,8 @@
 export const siteConfig = {
   clinicName: "CERO",
   clinicFullName: "CERO — Clínica de Emergências e Reabilitação Oral",
+  /** Domínio canônico (schema, Open Graph, Search Console). */
+  siteUrl: "https://www.cerocopacabana.com.br",
 
   /** WhatsApp só com números, DDI + DDD. */
   whatsapp: "5521998667979",

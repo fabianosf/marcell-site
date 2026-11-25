@@ -21,7 +21,7 @@ export const Seo = () => {
     setMeta('meta[name="twitter:description"]', "content", t("meta.description"));
 
     const faq = t("faq.list", { returnObjects: true }) as Array<{ q: string; a: string }>;
-    const origin = window.location.origin;
+    const origin = siteConfig.siteUrl.replace(/\/$/, "");
     const mapsUrl = getMapsUrl();
     const telephone = phoneE164();
 
