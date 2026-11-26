@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { getMapsUrl, phoneE164, siteConfig } from "@/lib/site";
+import { getMapsUrl, hasReviewStats, phoneE164, siteConfig } from "@/lib/site";
 
 const setMeta = (selector: string, attr: "content", value: string) => {
   const el = document.head.querySelector<HTMLMetaElement>(selector);
@@ -119,6 +119,15 @@ export const Seo = () => {
     if (mapsUrl) {
       dentist.hasMap = mapsUrl;
       dentist.sameAs = [mapsUrl];
+    }
+    if (hasReviewStats) {
+      dentist.aggregateRating = {
+        "@type": "AggregateRating",
+        ratingValue: siteConfig.reviews.ratingValue,
+        reviewCount: siteConfig.reviews.reviewCount,
+        bestRating: 5,
+        worstRating: 1,
+      };
     }
 
     upsertJsonLd("ld-dentist", dentist);

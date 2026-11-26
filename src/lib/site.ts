@@ -36,10 +36,21 @@ export const siteConfig = {
   /** Texto usado no mapa embutido. */
   mapQuery: "Av. Nossa Senhora de Copacabana, 330, Copacabana, Rio de Janeiro, RJ",
   /**
-   * Link oficial do Google Meu Negócio / Maps (cole quando tiver).
-   * Vazio = usa busca pelo endereço (mapQuery).
+   * Link oficial do Google Meu Negócio / Maps (cole o link da ficha quando tiver).
+   * Hoje aponta para o endereço no Maps; troque pelo g.page / maps/place da CERO.
    */
-  googleMapsUrl: "",
+  googleMapsUrl: "https://maps.app.goo.gl/PQgrRyyxVunk6MpC8",
+
+  /**
+   * Avaliações Google exibidas no site.
+   * Não invente textos: cole só reviews reais do Meu Negócio.
+   * ratingValue/reviewCount vazios (0) escondem a média no schema.
+   */
+  reviews: {
+    ratingValue: 0,
+    reviewCount: 0,
+    items: [] as Array<{ author: string; rating: number; text: string; date?: string }>,
+  },
 
   professionals: {
     marcell: {
@@ -89,3 +100,8 @@ export const getMapsUrl = () => {
   if (!siteConfig.mapQuery.trim()) return "";
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.mapQuery)}`;
 };
+
+export const hasReviewStats =
+  siteConfig.reviews.ratingValue > 0 && siteConfig.reviews.reviewCount > 0;
+
+export const hasReviewItems = siteConfig.reviews.items.length > 0;

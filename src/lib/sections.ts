@@ -6,6 +6,7 @@ const ALL_SECTIONS = [
   { path: "/tratamentos", id: "tratamentos" },
   { path: "/atendimento", id: "atendimento" },
   { path: "/galeria", id: "galeria" },
+  { path: "/avaliacoes", id: "avaliacoes" },
   { path: "/duvidas", id: "duvidas" },
   { path: "/contato", id: "contato" },
 ] as const;

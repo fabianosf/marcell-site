@@ -9,6 +9,7 @@ const es = {
     tratamentos: "Tratamientos",
     atendimento: "Tu consulta",
     galeria: "Galería",
+    avaliacoes: "Opiniones",
     duvidas: "Dudas",
     contato: "Contacto",
     agendar: "Agendar consulta",
@@ -139,6 +140,17 @@ const es = {
       maria_exame: { title: "Examen radiográfico", alt: "La Dra. Maria Eugênia realizando una radiografía intraoral" },
       clinica_sala: { title: "Sala de atención", alt: "Sillón odontológico en una sala clara con ventana grande" },
     },
+  },
+  reviews: {
+    title: "Opiniones en Google",
+    intro: "Lo que dicen los pacientes sobre la atención en CERO. Las opiniones vienen de Google.",
+    rating_label: "Nota en Google",
+    based_on: "Según {{count}} opiniones",
+    empty:
+      "Pronto publicaremos aquí las opiniones de Google. Mientras tanto, puedes ver el perfil y dejar la tuya.",
+    view_google: "Ver en Google",
+    leave_review: "Dejar opinión",
+    source: "Google",
   },
   faq: {
     title: "Preguntas frecuentes",
