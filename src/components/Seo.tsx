@@ -27,20 +27,29 @@ export const Seo = () => {
 
   useEffect(() => {
     const origin = siteConfig.siteUrl.replace(/\/$/, "");
-    const path = pathname === "/" ? "/" : pathname.replace(/\/$/, "") || "/";
-    const pageUrl = `${origin}${path === "/" ? "/" : path}`;
+    // Uma página SPA: canônico sempre a home (evita "cópia / canônica diferente" no GSC).
+    const homeUrl = `${origin}/`;
+    const isHome = pathname === "/" || pathname === "";
 
     document.documentElement.lang = lang.startsWith("en") ? "en" : lang.startsWith("es") ? "es" : "pt-BR";
     document.title = t("meta.title");
     setMeta('meta[name="description"]', "content", t("meta.description"));
     setMeta('meta[property="og:title"]', "content", t("meta.title"));
     setMeta('meta[property="og:description"]', "content", t("meta.description"));
-    setMeta('meta[property="og:url"]', "content", pageUrl);
+    setMeta('meta[property="og:url"]', "content", homeUrl);
     setMeta('meta[name="twitter:title"]', "content", t("meta.title"));
     setMeta('meta[name="twitter:description"]', "content", t("meta.description"));
+    // Rotas de seção = mesmo conteúdo da home → não indexar como páginas distintas.
+    setMeta(
+      'meta[name="robots"]',
+      "content",
+      isHome
+        ? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        : "noindex, follow",
+    );
 
     const canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (canonical) canonical.href = pageUrl;
+    if (canonical) canonical.href = homeUrl;
 
     const faq = t("faq.list", { returnObjects: true }) as Array<{ q: string; a: string }>;
     const mapsUrl = getMapsUrl();
