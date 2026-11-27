@@ -101,6 +101,7 @@ export const Gallery = () => {
                   width={photo.width}
                   height={photo.height}
                   loading="lazy"
+                  decoding="async"
                   className="h-auto w-full transition-transform duration-700 group-hover:scale-[1.03]"
                 />
                 <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-dark/85 to-transparent px-4 pb-3 pt-10 text-sm font-medium text-primary-foreground">

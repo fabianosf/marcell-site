@@ -39,6 +39,7 @@ export const Team = () => {
                   width={960}
                   height={1280}
                   loading="lazy"
+                  decoding="async"
                   className={`aspect-[4/3.2] w-full object-cover ${p.pos}`}
                 />
                 <div className="flex flex-1 flex-col p-7 md:p-9">

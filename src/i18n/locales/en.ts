@@ -3,6 +3,11 @@ const en = {
     title: "CERO Copacabana | 24h Dentist — Root Canal, Implants and Aesthetic Care",
     description:
       "Dentist in Copacabana, Rio de Janeiro: root canal, dental implants and aesthetic restorative care at CERO. Dr. Marcell Parente and Dr. Maria Eugênia. Open 24 hours.",
+    og_image_alt: "CERO Copacabana — dental clinic in Copacabana, Rio de Janeiro",
+    privacy_title: "Privacy policy | CERO Copacabana",
+    privacy_description: "How CERO Copacabana handles personal data, cookies and website contact.",
+    notfound_title: "Page not found | CERO Copacabana",
+    notfound_description: "The address you opened is not on the CERO Copacabana website.",
   },
   nav: {
     equipe: "Team",
@@ -22,6 +27,7 @@ const en = {
     whatsapp_message: "Hello, I would like to book an appointment at CERO.",
     whatsapp_marcell: "Hello Dr. Marcell, I would like to book an appointment.",
     whatsapp_maria: "Hello Dr. Maria Eugênia, I would like to book an appointment.",
+    whatsapp_praise: "Hello! I would like to share positive feedback about my visit to CERO.",
     whatsapp: "Message on WhatsApp",
     call: "Call now",
   },
@@ -147,6 +153,8 @@ const en = {
     rating_label: "Google rating",
     based_on: "Based on {{count}} reviews",
     empty: "We will publish Google reviews here soon. In the meantime, you can view the profile and leave yours.",
+    empty_hint: "Your feedback helps other patients discover CERO.",
+    whatsapp_praise: "Share my experience on WhatsApp",
     view_google: "View on Google",
     leave_review: "Leave a review",
     source: "Google",
@@ -210,6 +218,51 @@ const en = {
     disclaimer: "This website is for information only and does not replace a visit to a dentist.",
     rights: "All rights reserved.",
     developed: "Website developed by",
+    privacy: "Privacy",
+  },
+  cookies: {
+    title: "Cookies and privacy",
+    text: "We use essential cookies for the site to work and, if you accept, measurement cookies to understand how people use the site. Read our",
+    privacy_link: "privacy policy",
+    accept: "Accept measurement",
+    reject: "Essential only",
+  },
+  privacy: {
+    title: "Privacy policy",
+    updated: "Last updated: {{year}}.",
+    intro: "This policy explains how {{clinic}} handles personal data when you use the website, contact us or accept measurement cookies.",
+    back: "Back to home",
+    contact_line: "Privacy questions:",
+    sections: [
+      {
+        title: "1. Who we are",
+        body: "Controller: CERO — Emergency and Oral Rehabilitation Clinic, Copacabana, Rio de Janeiro. This website is for information and contact.",
+      },
+      {
+        title: "2. Data we may process",
+        body: "Data you send voluntarily (WhatsApp, phone, email). Technical browsing data (approximate IP, device, pages) only if you accept measurement cookies.",
+      },
+      {
+        title: "3. Purposes",
+        body: "Respond to requests and booking; improve the site and measure interest in content and contact channels; comply with legal duties when applicable.",
+      },
+      {
+        title: "4. Cookies",
+        body: "Essential cookies support language, navigation and your cookie choice. Google Analytics, if accepted, helps aggregated usage statistics. You can refuse measurement and the site still works.",
+      },
+      {
+        title: "5. Sharing",
+        body: "We do not sell data. Hosting and analytics providers may process data under contract and law. Embedded Google Maps follows Google policies.",
+      },
+      {
+        title: "6. Your rights",
+        body: "You may request confirmation, access, correction, anonymization, portability or deletion within legal limits via the clinic email.",
+      },
+      {
+        title: "7. Security and retention",
+        body: "We use reasonable security measures and keep data only as long as needed for these purposes or legal requirements.",
+      },
+    ],
   },
   notfound: {
     title: "Page not found",

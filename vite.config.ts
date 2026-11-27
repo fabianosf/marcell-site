@@ -10,16 +10,24 @@ import path from "path";
 const siteUrlPlugin = (mode: string): Plugin => {
   const env = loadEnv(mode, process.cwd(), "VITE_");
   const url = (env.VITE_SITE_URL || "https://www.cerocopacabana.com.br").replace(/\/$/, "");
+  const verification = (env.VITE_GOOGLE_SITE_VERIFICATION || "").trim();
   return {
     name: "site-url-html",
     transformIndexHtml: {
       order: "pre",
       handler(html) {
-        if (url) return html.replace(/%SITE_URL%/g, url);
-        return html
-          .split("\n")
-          .filter((line) => !line.includes("%SITE_URL%"))
-          .join("\n");
+        let out = html;
+        if (url) out = out.replace(/%SITE_URL%/g, url);
+        else out = out.split("\n").filter((line) => !line.includes("%SITE_URL%")).join("\n");
+        if (verification) {
+          out = out.replace(
+            "<!-- GOOGLE_SITE_VERIFICATION -->",
+            `<meta name="google-site-verification" content="${verification}" />`,
+          );
+        } else {
+          out = out.replace(/\s*<!-- GOOGLE_SITE_VERIFICATION -->\n?/g, "");
+        }
+        return out;
       },
     },
   };

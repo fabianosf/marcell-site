@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { getMapsUrl, hasReviewStats, phoneE164, siteConfig } from "@/lib/site";
+import { getMapsUrl, hasReviewItems, hasReviewStats, phoneE164, siteConfig } from "@/lib/site";
 
 const setMeta = (selector: string, attr: "content", value: string) => {
   const el = document.head.querySelector<HTMLMetaElement>(selector);
@@ -19,37 +19,81 @@ const upsertJsonLd = (id: string, data: Record<string, unknown>) => {
   el.text = JSON.stringify(data);
 };
 
+const removeJsonLd = (id: string) => {
+  document.getElementById(id)?.remove();
+};
+
+const upsertMetaByProperty = (property: string, content: string) => {
+  let el = document.head.querySelector<HTMLMetaElement>(`meta[property="${property}"]`);
+  if (!el) {
+    el = document.createElement("meta");
+    el.setAttribute("property", property);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", content);
+};
+
+type SeoProps = {
+  /** Página 404 fora do roteador de seções. */
+  variant?: "default" | "notfound";
+};
+
 /** Título, descrição, canonical por rota e dados estruturados (Google). */
-export const Seo = () => {
+export const Seo = ({ variant = "default" }: SeoProps) => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
   const { pathname } = useLocation();
 
   useEffect(() => {
     const origin = siteConfig.siteUrl.replace(/\/$/, "");
-    // Uma página SPA: canônico sempre a home (evita "cópia / canônica diferente" no GSC).
     const homeUrl = `${origin}/`;
+    const privacyUrl = `${origin}/privacidade`;
     const isHome = pathname === "/" || pathname === "";
+    const isPrivacy = pathname === "/privacidade";
+    const isNotFound = variant === "notfound";
+    const pageUrl = isPrivacy ? privacyUrl : isNotFound ? `${origin}${pathname}` : homeUrl;
+
+    const title = isNotFound ? t("meta.notfound_title") : isPrivacy ? t("meta.privacy_title") : t("meta.title");
+    const description = isNotFound ? t("meta.notfound_description") : isPrivacy ? t("meta.privacy_description") : t("meta.description");
+    const ogLocale = lang.startsWith("en") ? "en_US" : lang.startsWith("es") ? "es_ES" : "pt_BR";
+    const ogImage = `${origin}/og-image.jpg`;
 
     document.documentElement.lang = lang.startsWith("en") ? "en" : lang.startsWith("es") ? "es" : "pt-BR";
-    document.title = t("meta.title");
-    setMeta('meta[name="description"]', "content", t("meta.description"));
-    setMeta('meta[property="og:title"]', "content", t("meta.title"));
-    setMeta('meta[property="og:description"]', "content", t("meta.description"));
-    setMeta('meta[property="og:url"]', "content", homeUrl);
-    setMeta('meta[name="twitter:title"]', "content", t("meta.title"));
-    setMeta('meta[name="twitter:description"]', "content", t("meta.description"));
-    // Rotas de seção = mesmo conteúdo da home → não indexar como páginas distintas.
+    document.title = title;
+    setMeta('meta[name="description"]', "content", description);
+    setMeta('meta[property="og:title"]', "content", title);
+    setMeta('meta[property="og:description"]', "content", description);
+    setMeta('meta[property="og:url"]', "content", pageUrl);
+    setMeta('meta[name="twitter:title"]', "content", title);
+    setMeta('meta[name="twitter:description"]', "content", description);
+    setMeta('meta[property="og:locale"]', "content", ogLocale);
+    upsertMetaByProperty("og:image", ogImage);
+    upsertMetaByProperty("og:image:width", "1200");
+    upsertMetaByProperty("og:image:height", "630");
+    setMeta('meta[name="twitter:image"]', "content", ogImage);
+    upsertMetaByName("twitter:image:alt", t("meta.og_image_alt"));
     setMeta(
       'meta[name="robots"]',
       "content",
-      isHome
-        ? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-        : "noindex, follow",
+      isNotFound
+        ? "noindex, follow"
+        : isHome || isPrivacy
+          ? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          : "noindex, follow",
     );
 
     const canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (canonical) canonical.href = homeUrl;
+    if (canonical) canonical.href = isNotFound ? homeUrl : pageUrl;
+
+    const upsertMetaByName = (name: string, content: string) => {
+      let el = document.head.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("name", name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
 
     const faq = t("faq.list", { returnObjects: true }) as Array<{ q: string; a: string }>;
     const mapsUrl = getMapsUrl();
@@ -116,10 +160,12 @@ export const Seo = () => {
         addressCountry: siteConfig.postalAddress.addressCountry,
       };
     }
-    if (mapsUrl) {
-      dentist.hasMap = mapsUrl;
-      dentist.sameAs = [mapsUrl];
-    }
+    if (mapsUrl) dentist.hasMap = mapsUrl;
+    const sameAs: string[] = [];
+    if (mapsUrl) sameAs.push(mapsUrl);
+    const ig = siteConfig.instagram.trim().replace(/^@/, "");
+    if (ig) sameAs.push(`https://www.instagram.com/${ig}`);
+    if (sameAs.length) dentist.sameAs = sameAs;
     if (hasReviewStats) {
       dentist.aggregateRating = {
         "@type": "AggregateRating",
@@ -130,7 +176,41 @@ export const Seo = () => {
       };
     }
 
+    if (isPrivacy || isNotFound) {
+      removeJsonLd("ld-dentist");
+      removeJsonLd("ld-faq");
+      removeJsonLd("ld-reviews");
+      return;
+    }
+
     upsertJsonLd("ld-dentist", dentist);
+
+    if (hasReviewItems) {
+      upsertJsonLd("ld-reviews", {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        itemListElement: siteConfig.reviews.items.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Review",
+            author: { "@type": "Person", name: item.author },
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: item.rating,
+              bestRating: 5,
+              worstRating: 1,
+            },
+            reviewBody: item.text,
+            ...(item.date ? { datePublished: item.date } : {}),
+            itemReviewed: { "@id": `${origin}/#dentist` },
+          },
+        })),
+      });
+    } else {
+      removeJsonLd("ld-reviews");
+    }
+
     upsertJsonLd("ld-faq", {
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -140,7 +220,7 @@ export const Seo = () => {
         acceptedAnswer: { "@type": "Answer", text: f.a },
       })),
     });
-  }, [t, lang, pathname]);
+  }, [t, lang, pathname, variant]);
 
   return null;
 };

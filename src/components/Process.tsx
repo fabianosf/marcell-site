@@ -41,6 +41,7 @@ export const Process = () => {
             width={836}
             height={1280}
             loading="lazy"
+            decoding="async"
             className="aspect-[3/4.4] w-full rounded-[1.5rem] object-cover"
           />
           <img
@@ -49,6 +50,7 @@ export const Process = () => {
             width={960}
             height={1280}
             loading="lazy"
+            decoding="async"
             className="mt-10 aspect-[3/4.4] w-full rounded-[1.5rem] object-cover"
           />
         </div>

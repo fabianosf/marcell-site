@@ -3,6 +3,12 @@ const pt = {
     title: "CERO Copacabana | Dentista 24h — Canal, Implantes e Estética",
     description:
       "Dentista em Copacabana (RJ): tratamento de canal, implantes e dentística estética na CERO. Dr. Marcell Parente e Dra. Maria Eugênia. Emergência odontológica 24 horas.",
+    og_image_alt: "CERO Copacabana — clínica odontológica em Copacabana, Rio de Janeiro",
+    privacy_title: "Política de privacidade | CERO Copacabana",
+    privacy_description:
+      "Como a CERO Copacabana trata dados pessoais, cookies e contato pelo site. Informações em conformidade com a LGPD.",
+    notfound_title: "Página não encontrada | CERO Copacabana",
+    notfound_description: "O endereço acessado não existe no site da CERO Copacabana.",
   },
   nav: {
     equipe: "Equipe",
@@ -22,6 +28,7 @@ const pt = {
     whatsapp_message: "Olá, gostaria de agendar uma consulta na CERO.",
     whatsapp_marcell: "Olá Dr. Marcell, gostaria de agendar uma consulta.",
     whatsapp_maria: "Olá Dra. Maria Eugênia, gostaria de agendar uma consulta.",
+    whatsapp_praise: "Olá! Gostaria de deixar um elogio sobre o atendimento na CERO.",
     whatsapp: "Chamar no WhatsApp",
     call: "Ligar agora",
   },
@@ -148,6 +155,8 @@ const pt = {
     based_on: "Com base em {{count}} avaliações",
     empty:
       "Em breve publicamos aqui as avaliações do Google. Enquanto isso, você pode ver o perfil e deixar a sua.",
+    empty_hint: "Sua opinião ajuda outros pacientes a conhecer a CERO.",
+    whatsapp_praise: "Contar minha experiência pelo WhatsApp",
     view_google: "Ver no Google",
     leave_review: "Deixar avaliação",
     source: "Google",
@@ -211,6 +220,52 @@ const pt = {
     disclaimer: "Este site tem caráter informativo e não substitui a consulta com um cirurgião-dentista.",
     rights: "Todos os direitos reservados.",
     developed: "Site desenvolvido por",
+    privacy: "Privacidade",
+  },
+  cookies: {
+    title: "Cookies e privacidade",
+    text: "Usamos cookies essenciais para o site funcionar e, se você aceitar, cookies de medição para entender como as pessoas usam o site. Saiba mais na",
+    privacy_link: "política de privacidade",
+    accept: "Aceitar medição",
+    reject: "Só essenciais",
+  },
+  privacy: {
+    title: "Política de privacidade",
+    updated: "Última atualização: {{year}}.",
+    intro:
+      "Esta política descreve como {{clinic}} trata dados pessoais quando você usa o site, entra em contato ou aceita cookies de medição.",
+    back: "Voltar ao início",
+    contact_line: "Dúvidas sobre privacidade:",
+    sections: [
+      {
+        title: "1. Quem somos",
+        body: "Controlador: CERO — Clínica de Emergências e Reabilitação Oral, com sede em Copacabana, Rio de Janeiro. O site tem caráter informativo e de agendamento de contato.",
+      },
+      {
+        title: "2. Dados que podemos tratar",
+        body: "Dados que você nos envia voluntariamente (por exemplo, ao escrever no WhatsApp, ligar ou enviar e-mail). Dados técnicos de navegação, como endereço IP aproximado, tipo de dispositivo e páginas visitadas, somente se você aceitar cookies de medição.",
+      },
+      {
+        title: "3. Finalidades",
+        body: "Responder pedidos de informação e agendamento; melhorar o site e medir interesse em conteúdos e canais de contato; cumprir obrigações legais quando aplicável.",
+      },
+      {
+        title: "4. Cookies",
+        body: "Cookies essenciais permitem idioma, navegação e lembrar sua escolha sobre cookies. Cookies de medição (Google Analytics), se aceitos, ajudam a entender uso agregado do site. Você pode recusar a medição e o site continua funcionando.",
+      },
+      {
+        title: "5. Compartilhamento",
+        body: "Não vendemos dados. Provedores como hospedagem e ferramentas de análise podem processar dados conforme contrato e lei. O Google Maps embutido segue as políticas do Google.",
+      },
+      {
+        title: "6. Seus direitos (LGPD)",
+        body: "Você pode solicitar confirmação de tratamento, acesso, correção, anonimização, portabilidade ou eliminação de dados, dentro dos limites legais, pelo e-mail de contato da clínica.",
+      },
+      {
+        title: "7. Segurança e retenção",
+        body: "Adotamos medidas razoáveis de segurança. Mantemos dados apenas pelo tempo necessário às finalidades descritas ou exigências legais.",
+      },
+    ],
   },
   notfound: {
     title: "Página não encontrada",

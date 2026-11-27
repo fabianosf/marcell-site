@@ -4,6 +4,12 @@
  *  telefone, e-mail, endereço, CRO e currículo dos profissionais.
  * ============================================================
  * Campos vazios ("") não aparecem no site.
+ *
+ * Pendências do cliente (fora do código):
+ * - googleMapsUrl → ficha Google Meu Negócio (g.page / maps/place)
+ * - reviews → textos e nota reais do Google
+ * - instagram → @ da clínica
+ * - .env → VITE_GA4_MEASUREMENT_ID e VITE_GOOGLE_SITE_VERIFICATION (opcional)
  */
 export const siteConfig = {
   clinicName: "CERO",

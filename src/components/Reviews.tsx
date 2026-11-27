@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getMapsUrl, hasReviewItems, hasReviewStats, siteConfig } from "@/lib/site";
+import { getMapsUrl, getWhatsAppHref, hasReviewItems, hasReviewStats, hasWhatsApp, siteConfig } from "@/lib/site";
 
 const Stars = ({ value, size = "md" }: { value: number; size?: "sm" | "md" | "lg" }) => {
   const cls = size === "lg" ? "h-6 w-6" : size === "sm" ? "h-3.5 w-3.5" : "h-4 w-4";
@@ -60,23 +60,35 @@ export const Reviews = () => {
             ))}
           </ul>
         ) : (
-          <p className="mt-10 max-w-[48ch] text-base text-muted-foreground">{t("reviews.empty")}</p>
-        )}
-
-        {mapsUrl && (
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="h-12 rounded-full bg-primary px-7 text-base text-primary-foreground hover:bg-primary-dark">
-              <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
-                {t("reviews.view_google")}
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="h-12 rounded-full border-foreground/25 bg-transparent px-7 text-base">
-              <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
-                {t("reviews.leave_review")}
-              </a>
-            </Button>
+          <div className="mt-10 max-w-[48ch] space-y-3">
+            <p className="text-base text-muted-foreground">{t("reviews.empty")}</p>
+            <p className="text-base text-foreground">{t("reviews.empty_hint")}</p>
           </div>
         )}
+
+        <div className="mt-10 flex flex-wrap gap-3">
+          {mapsUrl && (
+            <>
+              <Button asChild size="lg" className="h-12 rounded-full bg-primary px-7 text-base text-primary-foreground hover:bg-primary-dark">
+                <a href={mapsUrl} target="_blank" rel="noopener noreferrer" data-analytics="google_maps_view">
+                  {t("reviews.view_google")}
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="h-12 rounded-full border-foreground/25 bg-transparent px-7 text-base">
+                <a href={mapsUrl} target="_blank" rel="noopener noreferrer" data-analytics="google_review_click">
+                  {t("reviews.leave_review")}
+                </a>
+              </Button>
+            </>
+          )}
+          {hasWhatsApp && !hasReviewItems && (
+            <Button asChild size="lg" variant="outline" className="h-12 rounded-full border-foreground/25 bg-transparent px-7 text-base">
+              <a href={getWhatsAppHref(t("cta.whatsapp_praise"))} target="_blank" rel="noopener noreferrer">
+                {t("reviews.whatsapp_praise")}
+              </a>
+            </Button>
+          )}
+        </div>
       </div>
     </section>
   );

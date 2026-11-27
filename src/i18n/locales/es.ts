@@ -3,6 +3,11 @@ const es = {
     title: "CERO Copacabana | Dentista 24h — Endodoncia, Implantes y Estética",
     description:
       "Dentista en Copacabana (Río de Janeiro): tratamiento de conducto, implantes y odontología estética en CERO. Dr. Marcell Parente y Dra. Maria Eugênia. Emergencias 24 horas.",
+    og_image_alt: "CERO Copacabana — clínica dental en Copacabana, Río de Janeiro",
+    privacy_title: "Política de privacidad | CERO Copacabana",
+    privacy_description: "Cómo CERO Copacabana trata datos personales, cookies y contacto en el sitio.",
+    notfound_title: "Página no encontrada | CERO Copacabana",
+    notfound_description: "La dirección que abriste no existe en el sitio de CERO Copacabana.",
   },
   nav: {
     equipe: "Equipo",
@@ -22,6 +27,7 @@ const es = {
     whatsapp_message: "Hola, me gustaría agendar una consulta en CERO.",
     whatsapp_marcell: "Hola Dr. Marcell, me gustaría agendar una consulta.",
     whatsapp_maria: "Hola Dra. Maria Eugênia, me gustaría agendar una consulta.",
+    whatsapp_praise: "¡Hola! Me gustaría contar una experiencia positiva en CERO.",
     whatsapp: "Escribir por WhatsApp",
     call: "Llamar ahora",
   },
@@ -148,6 +154,8 @@ const es = {
     based_on: "Según {{count}} opiniones",
     empty:
       "Pronto publicaremos aquí las opiniones de Google. Mientras tanto, puedes ver el perfil y dejar la tuya.",
+    empty_hint: "Tu opinión ayuda a otros pacientes a conocer CERO.",
+    whatsapp_praise: "Contar mi experiencia por WhatsApp",
     view_google: "Ver en Google",
     leave_review: "Dejar opinión",
     source: "Google",
@@ -211,6 +219,51 @@ const es = {
     disclaimer: "Este sitio es informativo y no sustituye la consulta con un odontólogo.",
     rights: "Todos los derechos reservados.",
     developed: "Sitio desarrollado por",
+    privacy: "Privacidad",
+  },
+  cookies: {
+    title: "Cookies y privacidad",
+    text: "Usamos cookies esenciales para que el sitio funcione y, si aceptas, cookies de medición para entender el uso del sitio. Consulta la",
+    privacy_link: "política de privacidad",
+    accept: "Aceptar medición",
+    reject: "Solo esenciales",
+  },
+  privacy: {
+    title: "Política de privacidad",
+    updated: "Última actualización: {{year}}.",
+    intro: "Esta política describe cómo {{clinic}} trata datos personales cuando usas el sitio, nos contactas o aceptas cookies de medición.",
+    back: "Volver al inicio",
+    contact_line: "Dudas sobre privacidad:",
+    sections: [
+      {
+        title: "1. Quiénes somos",
+        body: "Responsable: CERO — Clínica de Emergencias y Rehabilitación Oral, Copacabana, Río de Janeiro. El sitio es informativo y de contacto.",
+      },
+      {
+        title: "2. Datos que podemos tratar",
+        body: "Datos que envías voluntariamente (WhatsApp, teléfono, correo). Datos técnicos de navegación solo si aceptas cookies de medición.",
+      },
+      {
+        title: "3. Finalidades",
+        body: "Responder solicitudes y citas; mejorar el sitio y medir interés en contenidos y canales; cumplir obligaciones legales cuando corresponda.",
+      },
+      {
+        title: "4. Cookies",
+        body: "Las cookies esenciales permiten idioma, navegación y recordar tu elección. Google Analytics, si lo aceptas, ofrece estadísticas agregadas. Puedes rechazar la medición y el sitio sigue funcionando.",
+      },
+      {
+        title: "5. Compartición",
+        body: "No vendemos datos. Proveedores de hosting y análisis pueden procesar datos según contrato y ley. Google Maps integrado sigue las políticas de Google.",
+      },
+      {
+        title: "6. Tus derechos",
+        body: "Puedes solicitar confirmación, acceso, corrección, anonimización, portabilidad o eliminación dentro de los límites legales, por el correo de la clínica.",
+      },
+      {
+        title: "7. Seguridad y conservación",
+        body: "Aplicamos medidas razonables de seguridad y conservamos datos solo el tiempo necesario para estas finalidades o requisitos legales.",
+      },
+    ],
   },
   notfound: {
     title: "Página no encontrada",

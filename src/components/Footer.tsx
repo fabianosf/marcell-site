@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NAV_SECTIONS, scrollToSection } from "@/lib/sections";
 import { getMapsUrl, siteConfig, telHref } from "@/lib/site";
 import { Brand } from "@/components/Brand";
@@ -103,7 +103,15 @@ export const Footer = () => {
           <p>
             © {year} {siteConfig.clinicName}. {t("footer.rights")}
           </p>
-          <p className="max-w-[60ch] md:text-right">{t("footer.disclaimer")}</p>
+          <p className="max-w-[60ch] md:text-right">
+            <Link to="/privacidade" className="hover:text-background">
+              {t("footer.privacy")}
+            </Link>
+            <span className="mx-2" aria-hidden="true">
+              ·
+            </span>
+            {t("footer.disclaimer")}
+          </p>
         </div>
         <div className="wrap pb-6 text-sm text-background/50">
           {t("footer.developed")}{" "}
