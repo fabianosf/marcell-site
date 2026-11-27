@@ -33,6 +33,16 @@ const upsertMetaByProperty = (property: string, content: string) => {
   el.setAttribute("content", content);
 };
 
+const upsertMetaByName = (name: string, content: string) => {
+  let el = document.head.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
+  if (!el) {
+    el = document.createElement("meta");
+    el.setAttribute("name", name);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", content);
+};
+
 type SeoProps = {
   /** Página 404 fora do roteador de seções. */
   variant?: "default" | "notfound";
@@ -84,16 +94,6 @@ export const Seo = ({ variant = "default" }: SeoProps) => {
 
     const canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (canonical) canonical.href = isNotFound ? homeUrl : pageUrl;
-
-    const upsertMetaByName = (name: string, content: string) => {
-      let el = document.head.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("name", name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
 
     const faq = t("faq.list", { returnObjects: true }) as Array<{ q: string; a: string }>;
     const mapsUrl = getMapsUrl();
